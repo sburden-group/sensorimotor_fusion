@@ -2,7 +2,8 @@
 
 This version is based on version v4.2.5 of Amber's sensorfusion git repo. Working version for various gains (both EMG and slider).
 
-# SETTING UP (-- UPDATED 2021/5/24 Amber Chou)
+# SETTING UP 
+(UPDATED 2021/5/24 by Amber Chou)
 
 1. create virtual environment for python 3.5.4, [your path] -m venv venv35, for example:
 $ /Users/amber/AppData/Local/Programs/Python/Python35/python.exe -m venv venv35
@@ -50,26 +51,26 @@ or: run expFusion subject0 su19so
 
 # RUNNING EXPERIMENT
 
-**calibration**
+## **calibration**
 cd lib
 python ArduinoPython.py
 
-**pygame**
+## **pygame**
 conda activate sensorfusion-venv
 ipython
 
-**EMG only**
-run expFusion HCPS115_emg_ctl Fusion21so_ctl COM4 1
-**Slider only**
-run expFusion HCPS115_slider_ctl Fusion21so_ctl COM4 0
-**Fusion**
-run expFusion HCPS115_fusion_emg50 Fusion21so COM4 0.5
-run expFusion HCPS115_fusion_emg25 Fusion21so COM4 0.25
-run expFusion HCPS115_fusion_emg75 Fusion21so COM4 0.75
-**EMG only 2**
-run expFusion HCPS115_emg_ctl2 Fusion21so_ctl2 COM4 1
-**Slider only 2**
-run expFusion HCPS115_slider_ctl2 Fusion21so_ctl2 COM4 0
+## **EMG only**
+run expFusion HCPS1XX_emg_ctl Fusion21so_ctl COM4 1
+## **Slider only**
+run expFusion HCPS1XX_slider_ctl Fusion21so_ctl COM4 0
+## **Fusion**
+run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5
+run expFusion HCPS1XX_fusion_emg25 Fusion21so COM4 0.25
+run expFusion HCPS1XX_fusion_emg75 Fusion21so COM4 0.75
+## **EMG only 2**
+run expFusion HCPS1XX_emg_ctl2 Fusion21so_ctl2 COM4 1
+## **Slider only 2**
+run expFusion HCPS1XX_slider_ctl2 Fusion21so_ctl2 COM4 0
 
 
 
