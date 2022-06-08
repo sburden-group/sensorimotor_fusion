@@ -73,6 +73,8 @@ for example: `run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5` <br/>
 **Slider only 2**<br/>
 `run expFusion HCPS1XX_slider_ctl2 Fusion21so_ctl2 COM4 0`<br/>
 
+# DATA ANALYSIS
+See README in the fusion analysis folder.
 
 # DEVELOPMENT NOTES 
 
