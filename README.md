@@ -1,10 +1,8 @@
-# sensorfusion
+# sensorimotor fusion 
 
-# working version for various gains (both EMG and slider)
+This version is based on version v4.2.5 of Amber's sensorfusion git repo. Working version for various gains (both EMG and slider).
 
-This version is based on version 4.2.4, with changes (new protocols, MSE at the end, new look ahead window). Run with new Protocol Fusion21so.py, Fusion21so_ctl.py, Fusion21so_ctl2.py. New pikot data on 12/06/21 with Momona.
-
--- UPDATED 2021/5/24 Amber Chou
+# SETTING UP (-- UPDATED 2021/5/24 Amber Chou)
 
 1. create virtual environment for python 3.5.4, [your path] -m venv venv35, for example:
 $ /Users/amber/AppData/Local/Programs/Python/Python35/python.exe -m venv venv35
@@ -49,6 +47,33 @@ or: run expFusion subject0 su19so
 
 (Note: if using keyboard, press down to start the game, and then use left and right to control the diamond)
 
+
+# RUNNING EXPERIMENT
+
+**calibration**
+cd lib
+python ArduinoPython.py
+
+**pygame**
+conda activate sensorfusion-venv
+ipython
+
+**EMG only**
+run expFusion HCPS115_emg_ctl Fusion21so_ctl COM4 1
+**Slider only**
+run expFusion HCPS115_slider_ctl Fusion21so_ctl COM4 0
+**Fusion**
+run expFusion HCPS115_fusion_emg50 Fusion21so COM4 0.5
+run expFusion HCPS115_fusion_emg25 Fusion21so COM4 0.25
+run expFusion HCPS115_fusion_emg75 Fusion21so COM4 0.75
+**EMG only 2**
+run expFusion HCPS115_emg_ctl2 Fusion21so_ctl2 COM4 1
+**Slider only 2**
+run expFusion HCPS115_slider_ctl2 Fusion21so_ctl2 COM4 0
+
+
+
+# DEVELOPMENT NOTES 
 
 -- UPDATED 2021/7/1 Amber Chou
 (Note: comment out lines su18CP in __init__.py)
@@ -149,25 +174,3 @@ change EMG scales by *2, make EMG measurement more sensitive.
 -- 2021/12/7 Pilot data collection with Version 4.2.5 (with new EMG scaling). tested on Amber.
 
 
-**HOW TO RUN**
-
-**calibration**
-cd lib
-python ArduinoPython.py
-
-**pygame**
-conda activate sensorfusion-venv
-ipython
-
-**EMG only**
-run expFusion HCPS115_emg_ctl Fusion21so_ctl COM4 1
-**Slider only**
-run expFusion HCPS115_slider_ctl Fusion21so_ctl COM4 0
-**Fusion**
-run expFusion HCPS115_fusion_emg50 Fusion21so COM4 0.5
-run expFusion HCPS115_fusion_emg25 Fusion21so COM4 0.25
-run expFusion HCPS115_fusion_emg75 Fusion21so COM4 0.75
-**EMG only 2**
-run expFusion HCPS115_emg_ctl2 Fusion21so_ctl2 COM4 1
-**Slider only 2**
-run expFusion HCPS115_slider_ctl2 Fusion21so_ctl2 COM4 0
