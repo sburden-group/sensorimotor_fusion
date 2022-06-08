@@ -5,32 +5,36 @@ This version is based on version v4.2.5 of Amber's sensorfusion git repo. Workin
 # SETTING UP 
 (UPDATED 2021/5/24 by Amber Chou)
 
-1. create virtual environment for python 3.5.4, [your path] -m venv venv35, for example:
-$ /Users/amber/AppData/Local/Programs/Python/Python35/python.exe -m venv venv35
+1. create virtual environment for python 3.5.4, [your path] -m venv venv35, for example: \
+'$ /Users/amber/AppData/Local/Programs/Python/Python35/python.exe -m venv venv35'
 and then activate the virtual environment
-venv35\Scripts\activate.bat
+'venv35\Scripts\activate.bat'
 
 (or via conda)
-conda create --name my-project python=3.5.4 pip
-conda activate my-project
-(back to base) conda deactivate
+'conda create --name my-project python=3.5.4 pip'\
+'conda activate my-project' \
+(back to base) 'conda deactivate' \
 
-(view list of venv)conda info --envs
+(view list of venv) 'conda info --envs'
 
 
 2. install correct versions of packages
-$ pip install -U matplotlib 
-$ pip install numpy==1.14.3
-$ pip install ipython==6.1.0
-$ pip install pygame==1.9.2
-$ pip install pyserial==3.2.1
+'''
+$ pip install -U matplotlib \
+$ pip install numpy==1.14.3 \
+$ pip install ipython==6.1.0 \
+$ pip install pygame==1.9.2 \
+$ pip install pyserial==3.2.1 \
+'''
 
 for spikershields EMG+slider (sensorfusion):
-$ pip install pandas
-$ pip install scipy
+'''
+$ pip install pandas \
+$ pip install scipy \
+'''
 
 3. change to hcps directory, for example: 
-$ cd /path/to/hcps/directory
+'$ cd /path/to/hcps/directory'
 
 4. start ipython:
 $ ipython
@@ -64,9 +68,9 @@ run expFusion HCPS1XX_emg_ctl Fusion21so_ctl COM4 1
 ## **Slider only**
 run expFusion HCPS1XX_slider_ctl Fusion21so_ctl COM4 0
 ## **Fusion**
-run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5
-run expFusion HCPS1XX_fusion_emg25 Fusion21so COM4 0.25
-run expFusion HCPS1XX_fusion_emg75 Fusion21so COM4 0.75
+run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5\
+run expFusion HCPS1XX_fusion_emg25 Fusion21so COM4 0.25\
+run expFusion HCPS1XX_fusion_emg75 Fusion21so COM4 0.75\
 ## **EMG only 2**
 run expFusion HCPS1XX_emg_ctl2 Fusion21so_ctl2 COM4 1
 ## **Slider only 2**
