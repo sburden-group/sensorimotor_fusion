@@ -5,71 +5,73 @@ This version is based on version v4.2.5 of Amber's sensorfusion git repo. Workin
 # SETTING UP 
 (UPDATED 2021/5/24 by Amber Chou)
 
-1. create virtual environment for python 3.5.4, [your path] -m venv venv35, for example: 
-`$ /Users/amber/AppData/Local/Programs/Python/Python35/python.exe -m venv venv35`
-and then activate the virtual environment
-`venv35\Scripts\activate.bat`
+1. create virtual environment for python 3.5.4, [your path] -m venv venv35, for example: <br/>
+`$ /Users/amber/AppData/Local/Programs/Python/Python35/python.exe -m venv venv35`<br/>
+and then activate the virtual environment<br/>
+`venv35\Scripts\activate.bat`<br/>
 
-(or via conda)
-`conda create --name my-project python=3.5.4 pip`
-`conda activate my-project`
-(back to base) `conda deactivate`
+(or via conda)<br/>
+`conda create --name my-project python=3.5.4 pip`<br/>
+`conda activate my-project`<br/>
+(back to base) `conda deactivate`<br/>
 
-(view list of venv) conda info --envs
-
-
-2. install correct versions of packages
-
-```$ pip install -U matplotlib 
-$ pip install numpy==1.14.3 
-$ pip install ipython==6.1.0 
-$ pip install pygame==1.9.2 
-$ pip install pyserial==3.2.1 ```
+(view list of venv) `conda info --envs`<br/>
 
 
-for spikershields EMG+slider (sensorfusion):
-```
-$ pip install pandas 
-$ pip install scipy 
-```
+2. install correct versions of packages<br/>
 
-3. change to hcps directory, for example: 
+`$ pip install -U matplotlib `<br/>
+`$ pip install numpy==1.14.3 `<br/>
+`$ pip install ipython==6.1.0 `<br/>
+`$ pip install pygame==1.9.2 `<br/>
+`$ pip install pyserial==3.2.1`<br/>
+
+
+for spikershields EMG+slider (sensorfusion):<br/>
+
+`$ pip install pandas` <br/>
+`$ pip install scipy`
+
+
+3. change to hcps directory, for example: <br/>
 `$ cd /path/to/hcps/directory`
 
-4. start ipython:
-`$ ipython`
-alternative: 
-`$ python
-$ python -m IPython`
+4. start ipython:<br/>
+`$ ipython`<br/>
+alternative: <br/>
+`$ python`<br/>
+`$ python -m IPython`<br/>
 or:
-`$ import IPython
-$ IPython.embed()`
+`$ import IPython` <br/>
+`$ IPython.embed()`
 
-5. run experiment
-`In [1]: run experiment subject protocol port EMGweight`
-for example: `run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5` 
+5. run experiment<br/>
+`In [1]: run experiment subject protocol port EMGweight`<br/>
+for example: `run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5` <br/>
 (Note: if using keyboard, press down to start the game, and then use left and right to control the diamond)
 
 # RUNNING EXPERIMENT
 
-## **calibration**
-`cd lib`
+**calibration**<br/>
+`cd lib`<br/>
 `python ArduinoPython.py`
 
-## **pygame**
-`conda activate sensorfusion-venv`
+**pygame**<br/>
+`conda activate sensorfusion-venv`<br/>
 `ipython`
 
-## **EMG only**
-`run expFusion HCPS1XX_emg_ctl Fusion21so_ctl COM4 1`
-## **Slider only**
-`run expFusion HCPS1XX_slider_ctl Fusion21so_ctl COM4 0`
-## **Fusion**
-`run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5`
-## **EMG only 2**
-`run expFusion HCPS1XX_emg_ctl2 Fusion21so_ctl2 COM4 1`
-## **Slider only 2**
-`run expFusion HCPS1XX_slider_ctl2 Fusion21so_ctl2 COM4 0`
+**EMG only**<br/>
+`run expFusion HCPS1XX_emg_ctl Fusion21so_ctl COM4 1`<br/>
+**Slider only**<br/>
+`run expFusion HCPS1XX_slider_ctl Fusion21so_ctl COM4 0`<br/>
+**Fusion**<br/>
+`run expFusion HCPS1XX_fusion_emg25 Fusion21so COM4 0.25`<br/>
+`run expFusion HCPS1XX_fusion_emg50 Fusion21so COM4 0.5`<br/>
+`run expFusion HCPS1XX_fusion_emg75 Fusion21so COM4 0.75`<br/>
+**EMG only 2**<br/>
+`run expFusion HCPS1XX_emg_ctl2 Fusion21so_ctl2 COM4 1`<br/>
+**Slider only 2**<br/>
+`run expFusion HCPS1XX_slider_ctl2 Fusion21so_ctl2 COM4 0`<br/>
 
 
 # DEVELOPMENT NOTES 
