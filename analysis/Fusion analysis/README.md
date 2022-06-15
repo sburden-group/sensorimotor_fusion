@@ -1,13 +1,15 @@
 # DATA ANALYSIS
 
 # SETUP:
-- run **Store_HCPS_data.ipynb** (store HCPS.pkl)
-- run **Data_analysis.ipynb **(store DATA.pkl)
+- run **Store_HCPS_data.ipynb** (store HCPS.pkl), make sure to update the "path" first
+- run **Data_analysis.ipynb**(store DATA.pkl)
 - run **Numerical_simulations.ipynb** (store SIM.pkl) , simulated y,y0,y1
 - run **Transfer_functions.ipynb** (store TF.pkl, incluing F,B,TUR,TUD,TYR,TYD ... and find crossover frequency)
 - run **Power_spectrum_density.ipynb** (store AvgDelta.pkl)
 
 # PLOTS:
+example plots: **example_plot.ipynb**, move these plotting files to the same folder as the data files (.pkl) first <br/>
+
 CPHS conference paper figures: **CPHS_plots.ipynb** <br/>
 
 Qual exam figures: **Qual_plots.ipynb**<br/>
