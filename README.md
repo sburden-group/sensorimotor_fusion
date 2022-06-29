@@ -1,3 +1,5 @@
+**This project has been submitted to the CPHS 2022 and bioRxiv. Please contact the corresponding author (hachou@uw.edu) before reusing the data.**
+
 # sensorimotor fusion 
 
 This version is based on version v4.2.5 of Amber's sensorfusion git repo. Working version for various gains (both EMG and slider).
