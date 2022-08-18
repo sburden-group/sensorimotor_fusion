@@ -1,4 +1,4 @@
-**This project has been submitted to the CPHS 2022 and bioRxiv. Please contact the corresponding author (hachou@uw.edu) before reusing the data.**
+**This project has been submitted to the CPHS 2022 and [bioRxiv](https://doi.org/10.1101/2022.06.29.498180). Please contact the corresponding author (hachou@uw.edu) before reusing the data.**
 
 # sensorimotor fusion 
 
