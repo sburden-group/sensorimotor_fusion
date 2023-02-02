@@ -4,6 +4,11 @@
 
 This version is based on version v4.2.5 of Amber's sensorfusion git repo. Working version for various gains (both EMG and slider).
 
+# Arduino setup
+Bottom EMG (A0, bicep), top EMG (A1, tricep), slider (A2, 3.3V).<br/>
+Open Arduino IDE, upload sliderino (in lib) to Arduino.<br/>
+Note: make sure the COM number after connection, change # in ArduinoPython.py
+
 # SETTING UP 
 (UPDATED 2021/5/24 by Amber Chou)
 
