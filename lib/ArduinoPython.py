@@ -18,9 +18,9 @@ import copy
 #ArduinoPython sensor fusion code
 #Need to change:
 #(1) where to save EMG calibration data
-cal_dir = os.path.join('C:/Users/amber/Documents/Github/sensorfusion/calibration','EMGcalibration.txt')
+cal_dir = os.path.join('C:/Users/amber/Documents/Github/sensorimotor_fusion/calibration','EMGcalibration.txt')
 #(2) COM port
-COM_PORT = 'COM4'
+COM_PORT = 'COM3'
 #(3) slider min and max value (raw data)
 SLIDER_MIN = 0.
 SLIDER_MAX = 675.8 #3.3V in Arduino (3.3*1024/5)
