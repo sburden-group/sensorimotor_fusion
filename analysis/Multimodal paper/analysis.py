@@ -47,3 +47,41 @@ def WilcoxonTest(all_data):
             
             k+=1    
     return w,p,sig,flag
+
+def derivative(x, y, norm=True):
+    '''
+    Computes the derivative of y along x.
+
+    Args:
+        x (nt): independent variable, e.g. time
+        y (nt, ...): dependent variable, e.g. position
+        norm (bool, optional): also compute the norm of y if it is multidimensional (default True)
+
+    Returns:
+        nt: derivative of y
+    '''
+    dy = np.gradient(y, axis=0, edge_order=2)
+    if norm and dy.ndim > 1:
+        dy = np.linalg.norm(dy, axis=1)
+    dx = np.gradient(x)
+    dydx = dy/dx
+    return dydx
+
+def double_derivative(x, y, norm=True):
+    '''
+    Computes the double derivative of y along x.
+
+    Args:
+        x (nt): independent variable, e.g. time
+        y (nt, ...): dependent variable, e.g. position
+        norm (bool, optional): also compute the norm of y if it is multidimensional (default True)
+
+    Returns:
+        nt: double derivative of y
+    '''
+    ddy = np.gradient(np.gradient(y, axis=0, edge_order=2), axis=0, edge_order=2)
+    if norm and ddy.ndim > 1:
+        ddy = np.linalg.norm(ddy, axis=1)
+    dx = np.gradient(x)
+    ddydx = ddy/(dx**2)
+    return ddydx
