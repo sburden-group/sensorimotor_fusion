@@ -104,12 +104,12 @@ def get_data(PATH,trial_name):
 
     for key in keys:
         for i,trial in time_so[key].items():
-            refs = trial['refs'][-N:]*scaleOutputScreen
-            outs = trial['outs'][-N:]*scaleOutputScreen
-            inps = trial['inps'][-N:]*scaleInput
-            inp0s = trial['inp0s'][-N:]*scaleInput
-            inp1s = trial['inp1s'][-N:]*scaleInput
-            dists = trial['dists'][-N:]*scaleInput
+            refs = trial['refs'][-N:] #*scaleOutputScreen
+            outs = trial['outs'][-N:] #*scaleOutputScreen
+            inps = trial['inps'][-N:] #*scaleInput
+            inp0s = trial['inp0s'][-N:]#*scaleInput
+            inp1s = trial['inp1s'][-N:]#*scaleInput
+            dists = trial['dists'][-N:]#*scaleInput
             REFS = np.fft.fft(refs)/N
             OUTS = np.fft.fft(outs)/N
             INPS = np.fft.fft(inps)/N

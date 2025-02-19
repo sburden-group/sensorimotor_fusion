@@ -1,6 +1,6 @@
 import numpy as np
 import math as m
-from scipy import signal
+from scipy import signal, fft
 
 # N, primes, IX, base_freq, freqs, omegas, fs, sample_period, s, z, soM, zero, first, second
 
