@@ -140,3 +140,51 @@ def confidence_ellipse(x, y, ax, n_std=2.0, facecolor='none', **kwargs):
 
     ellipse.set_transform(transf + ax.transData)
     return ax.add_patch(ellipse)
+
+
+def calc_rms(signal, remove_offset=True):
+    '''
+    Root mean square of a signal
+    
+    Args:
+        signal (nt, ...): voltage along time, other dimensions will be preserved
+        remove_offset (bool): if true, subtract the mean before calculating RMS
+    Returns:
+        float array: rms of the signal along the first axis. output dimensions will be the same non-time dimensions as the input signal
+    '''
+    if remove_offset:
+        m = np.mean(signal, axis=0)
+    else:
+        m = 0
+    
+    return np.sqrt(np.mean(np.square(signal - m), axis=0))
+
+def calc_time_domain_error_2d(X, Y, axis = 1):
+    """calc_time_domain_error for 2d cursor
+
+    Args:
+        X (n_time x n_dim): time-series data of position, e.g. reference position (time x dimensions)
+        Y (n_time x n_dim): time-series data of another position, e.g. cursor position (time x dimensions)
+        axis (int): axis to calculate the Euclidean distance along
+
+    Returns:
+        td_error (n_time x 1): time-series data of the Euclidean distance between X position and Y position
+    """
+    # make sure that the shapes are the same
+    assert(X.shape == Y.shape)
+    td_error = np.linalg.norm(X - Y, axis=axis)
+    return td_error
+
+def frequency_domain(t,fs):
+    """ 
+    t = time array
+    fs = sampling rate (Hz) 
+    return:
+      xf = positve freq array, length = half of the time array
+      xf_all = full freq array, length = same as time array
+
+    """
+    N = len(t)                          #data length (time (s) * sampling rate)
+    xf_all = fft.fftfreq(N, 1./ fs)     #freq (x-axis) both + and - terms
+    xf = fft.fftfreq(N, 1./ fs)[:N//2]  #freq (x-axis) positive-frequency terms
+    return xf, xf_all
