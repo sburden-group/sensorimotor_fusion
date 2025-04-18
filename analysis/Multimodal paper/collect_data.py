@@ -88,6 +88,7 @@ def get_data(PATH,trial_name):
     # freq domain
     Rs = [] #reference
     Ds = [] #disturbance
+    MDs = [] #Md in freq domain
     Us = [] #human input
     U0s = [] #human input emg
     U1s = [] #human input slider
@@ -96,6 +97,7 @@ def get_data(PATH,trial_name):
     # time domain
     rs = [] #reference
     ds = [] #disturbance
+    mds = [] #Md in time domain
     us = [] #human input
     u0s = [] #human input emg
     u1s = [] #human input slider
@@ -104,53 +106,63 @@ def get_data(PATH,trial_name):
 
     for key in keys:
         for i,trial in time_so[key].items():
-            refs = trial['refs'][-N:] #*scaleOutputScreen
-            outs = trial['outs'][-N:] #*scaleOutputScreen
-            inps = trial['inps'][-N:] #*scaleInput
-            inp0s = trial['inp0s'][-N:]#*scaleInput
-            inp1s = trial['inp1s'][-N:]#*scaleInput
-            dists = trial['dists'][-N:]#*scaleInput
+            refs = trial['refs'][-N:]
+            outs = trial['outs'][-N:]
+            inps = trial['inps'][-N:]
+            inp0s = trial['inp0s'][-N:]
+            inp1s = trial['inp1s'][-N:]
+            dists = trial['dists'][-N:]
             REFS = np.fft.fft(refs)/N
             OUTS = np.fft.fft(outs)/N
             INPS = np.fft.fft(inps)/N
             INP0S = np.fft.fft(inp0s)/N
             INP1S = np.fft.fft(inp1s)/N
             DISTS = np.fft.fft(dists)/N
+            M_D = M_all*DISTS # MD in freq domain
+            M_D[0] = 0 #nan value
+            M_d = IFFT(M_D,N) # Md in time domain
 
-            Rs.append(REFS) # freq domain
-            Ds.append(DISTS) # freq domain
-            Us.append(INPS) # freq domain
-            U0s.append(INP0S) # freq domain
-            U1s.append(INP1S) # freq domain
-            Ys.append(OUTS) # freq domain
+            # scale to screen/slider output to be 30% of the screen/slider size for visualization
+            # i.e. scaled -15%~15%
+            Rs.append(REFS*scaleOutputScreen) # freq domain
+            Ds.append(DISTS*scaleInput) # freq domain
+            MDs.append(M_D*scaleOutputScreen) # freq domain
+            Us.append(INPS*scaleInput) # freq domain
+            U0s.append(INP0S*scaleInput) # freq domain
+            U1s.append(INP1S*scaleInput) # freq domain
+            Ys.append(OUTS*scaleOutputScreen) # freq domain
 
-            rs.append(refs) # time domain
-            ds.append(dists) # time domain
-            us.append(inps) # time domain
-            u0s.append(inp0s) # time domain
-            u1s.append(inp1s) # time domain
-            ys.append(outs) # time domain
-            errors.append(np.sum(abs(refs - outs)**2)) #MSE np.sum((r-y)**2)
+            rs.append(refs*scaleOutputScreen) # time domain
+            ds.append(dists*scaleInput) # time domain
+            mds.append(M_d*scaleOutputScreen) # time domain
+            us.append(inps*scaleInput) # time domain
+            u0s.append(inp0s*scaleInput) # time domain
+            u1s.append(inp1s*scaleInput) # time domain
+            ys.append(outs*scaleOutputScreen) # time domain
+            errors.append(np.sum(abs(refs*scaleOutputScreen - outs*scaleOutputScreen)**2)) #MSE np.sum((r-y)**2)
     Rs = np.asarray(Rs)
     Ds = np.asarray(Ds)
+    MDs = np.asarray(MDs)
     Us = np.asarray(Us)
     U0s = np.asarray(U0s)
     U1s = np.asarray(U1s)
     Ys = np.asarray(Ys)
     rs = np.asarray(rs)
     ds = np.asarray(ds)
+    mds = np.asarray(mds)
     us = np.asarray(us)
     u0s = np.asarray(u0s)
     u1s = np.asarray(u1s)
     ys = np.asarray(ys) # 11 gains 
     errors = np.asarray(errors)
-    return Rs,Ds,Us,U0s,U1s,Ys,rs,ds,us,u0s,u1s,ys,errors
+    return Rs,Ds,MDs,Us,U0s,U1s,Ys,rs,ds,mds,us,u0s,u1s,ys,errors
 
 # analyze data for each subject each condition
 def analyze(PATH,keys,trialID): 
     #(freq domain)
     Rs = [] #reference
     Ds = [] #disturbances 
+    MDs = [] #Md in freq domain
     Us = [] #U_H user inputs
     U0s = [] #U_H user inputs emg
     U1s = [] #U_H user inputs slider
@@ -159,6 +171,7 @@ def analyze(PATH,keys,trialID):
     #(time domain)
     rs = [] #reference (time domain)
     ds = [] #disturbances (time domain)
+    mds = [] #Md in time domain
     us = [] #U_H user inputs (time domain)
     u0s = [] #U_H user inputs emg (time domain)
     u1s = [] #U_H user inputs slider (time domain)
@@ -166,15 +179,17 @@ def analyze(PATH,keys,trialID):
     errors = [] #time domain errors (MSE per trial)
 
     for key in keys:
-        Rs_,Ds_,Us_,U0s_,U1s_,Ys_,rs_,ds_,us_,u0s_,u1s_,ys_,errors_ = get_data(PATH,key+'\\'+key+trialID)
+        Rs_,Ds_,MDs_,Us_,U0s_,U1s_,Ys_,rs_,ds_,mds_,us_,u0s_,u1s_,ys_,errors_ = get_data(PATH,key+'\\'+key+trialID)
         Rs.append(Rs_)
         Ds.append(Ds_)
+        MDs.append(MDs_)
         Us.append(Us_)
         U0s.append(U0s_)
         U1s.append(U1s_)
         Ys.append(Ys_)
         rs.append(rs_)
         ds.append(ds_)
+        mds.append(mds_)
         us.append(us_)
         u0s.append(u0s_)
         u1s.append(u1s_)
@@ -182,15 +197,17 @@ def analyze(PATH,keys,trialID):
         errors.append(errors_)
     Rs = np.asarray(Rs) # participants x number of trials x number of time points
     Ds = np.asarray(Ds) # participants x number of trials x number of time points
+    MDs = np.asarray(MDs) # participants x number of trials x number of time points
     Us = np.asarray(Us) # participants x number of trials x number of time points
     U0s = np.asarray(U0s) # participants x number of trials x number of time points
     U1s = np.asarray(U1s) # participants x number of trials x number of time points
     Ys = np.asarray(Ys) # participants x number of trials x number of time points
     rs = np.asarray(rs) # participants x number of trials x number of time points
     ds = np.asarray(ds) # participants x number of trials x number of time points
+    mds = np.asarray(mds) # participants x number of trials x number of time points
     us = np.asarray(us) # participants x number of trials x number of time points
     u0s = np.asarray(u0s) # participants x number of trials x number of time points
     u1s = np.asarray(u1s) # participants x number of trials x number of time points
     ys = np.asarray(ys) # participants x number of trials x number of time points
     errors = np.asarray(errors) # participants x number of trials
-    return Rs,Ds,Us,U0s,U1s,Ys,rs,ds,us,u0s,u1s,ys,errors
+    return Rs,Ds,MDs,Us,U0s,U1s,Ys,rs,ds,mds,us,u0s,u1s,ys,errors

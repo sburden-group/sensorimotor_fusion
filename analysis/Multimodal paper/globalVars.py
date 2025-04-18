@@ -27,7 +27,9 @@ def IFFT(data,N):
   return (fft.ifft(data)*N).real
 
 soM = lambda s : 1/(s**2 + s) #2nd order machine
-M = soM(s(omegas))           #M_hat = 1/ ((jw)^2 + (jw))
+M = soM(s(omegas))           #M_hat = 1/ ((jw)^2 + (jw)) at stimulated frequencies
+
+M_all = soM(s(2*np.pi*xf_all)) #M_hat = 1/ ((jw)^2 + (jw)) at all frequencies
 
 #scaling factors for output screen and input slider
 scaleOutputScreen = 1/4
