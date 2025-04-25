@@ -32,7 +32,7 @@ def getrawdata(PATH,subject):
     for id in listofIDs:
         fis = sorted(glob.glob(PATH+'\\data\\'+subject+'\\'+id+'.npz'))
         if len(fis) > 1:
-        	dbg('WARNING -- repeated trials for id ='+id)
+            dbg('WARNING -- repeated trials for id ='+id)
         assert len(fis) > 0, 'ERROR -- no data for id ='+id
         fi = fis[-1]
         #print('LOAD '+fi)
