@@ -30,32 +30,9 @@ soM = lambda s : 1/(s**2 + s) #2nd order machine
 M = soM(s(omegas))           #M_hat = 1/ ((jw)^2 + (jw)) at stimulated frequencies
 
 M_all = soM(s(2*np.pi*xf_all)) #M_hat = 1/ ((jw)^2 + (jw)) at all frequencies
+M_all[0] = 0
 
 #scaling factors for output screen and input slider
 scaleOutputScreen = 1/4
 scaleInput = 0.04616974606700115
 
-# plotting parameters
-colors = dict(M='#6600CC',
-              F='#000000',
-              B='#FFFFFF',
-              H='#009900',
-              r='#FDB119',
-              u='#009900',
-              u25='#BBF90F',
-              u75='#006400',
-              d='#FD6E19',
-              #y='#0033FF',  #or 6600CC which is darker and I prefer 
-              y='#6600CC',  #or 6600CC which is darker and I prefer 
-              N='#0000CC',
-              D='#CC0000',
-              g='#B1B1B1', #grey
-              first5='#B1B1B1',
-              last5='#999999',
-              BLUE = '#1f77b4',
-              ORANGE = '#ff7f0e',
-              GREEN = '#2ca02c',
-              RED = '#d62728',
-              PURPLE = '#9467bd',
-              GOLD = '#FDB119') #default colors
-              # D = dominant = right; N = nondominant = left

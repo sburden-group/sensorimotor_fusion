@@ -8,6 +8,8 @@ import sklearn
 from sklearn import linear_model, metrics
 from matplotlib.patches import Ellipse
 import matplotlib.transforms as transforms
+from scipy.stats import norm, wilcoxon, ttest_rel, friedmanchisquare, shapiro,f_oneway,friedmanchisquare,rankdata
+import statsmodels.stats.multitest as smm
 
 def mean_and_interquartile(data, axis = 0):
     """
